@@ -2,8 +2,9 @@ class Api::ThingsController < ApplicationController
   def index
     render json: { things: [
       {
+        id: '1',
         name: 'joe',
-        id: '1'
+        description: 'Joe is a Person'
       }
     ] }.to_json
   end

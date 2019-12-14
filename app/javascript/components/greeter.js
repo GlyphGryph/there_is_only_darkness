@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class Greeter extends React.Component {
-  render(){
-    return (
-      "Greeter Page!"
-    )
-  }
-}
+const Greeter = ({name}) => (
+  <div>
+    Hello, {name}!
+  </div>
+)
 
 export default Greeter
