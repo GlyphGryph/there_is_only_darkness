@@ -1,0 +1,54 @@
+x | Implement Users
+o | Groundwork on Intro
+  x | Create Character that belongs_to :user and :world
+  x | Create World with state "turn" and has_one :character and has_one :user
+  x | Add belongs_to :worlds and has_many :characters to User
+  o | Add a Clickable "Create World" button that creates a new world and character for the user
+  o | Have front-end state "in world" that it receives from the server if a world exists for user
+  o | When a player refreshed the page and has a World, they should see "World Joined"
+  o | They should see a button that says "Destroy World" that destroys the world and character
+  o | Destroying a world refreshes the page to the "Create World" option
+  o | Create a Region model that can be associated with a world.
+  o | Destroying a world destroys all associated regions
+  o | A Region has a name and description.
+  o | A Region has a has_many relationship with other Regions via a model called Paths.
+  o | A Region has a has_one relationship to a Character, who now has a belongs_to Region
+  o | When a world is created, create two Regions, and assign the character to the first region.
+  o | The Description of both regions is "There is Only Darkness"
+  o | Create a table of Actions with columns region_id and type, belongs_to Region
+  o | Regions has_many Actions
+  o | Both Regions have associated Action with type :walk
+  o | The first Region has a Path to the second (but not vice versa)
+  o | Have a flat file with descriptions for action types, have :walk map to "Walk Through Darkness"
+  o | When a player enters a region, on the front end they receive the list of action types and associated descriptions, data for old regions is wiped away.
+  o | Display Action card with description and type in section labeled "What can I do here?"
+  o | Have button in action card to select it
+  o | Have logic on back end in response advance the world a turn, and move the player down the first Path to associate with a new Region.
+  o | Return "changed_region" status along with all details for new region
+  o | Update front end to reflect.
+  o | Create a series of nearly identical regions with descriptions (Might want to create a world generation script)
+    o | "You walk through the darkness."
+    o | "You find nothing."
+    o | "You grow weaker."
+    o | "Your steps grow heavy. The darkness clings to you like oil."
+    o | "You slow. The darkness rides on your back."
+    o | "You are reduced to a crawl."
+    o | "You have nothing left."
+    o | "You can go no further. You must look inward.”
+
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
+o |
