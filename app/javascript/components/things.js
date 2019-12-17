@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as Action from '../actions';
+import * as ThingActions from '../actions/things';
 
 const Thing = ({thing})=>{
   return (
@@ -27,7 +27,7 @@ class Things extends React.Component {
 }
 
 const mapDispatchToProps = {
-  getThings: Action.getThings
+  getThings: ThingActions.getThings
 }
 
 function mapStateToProps(state){

@@ -5,10 +5,7 @@ import { Provider } from 'react-redux';
 
 import configureStore from '../configureStore';
 
-import Splash from './splash';
-import Counter from './counter';
-import Greeter from './greeter';
-import Things from './things';
+import StartMenu from './start_menu';
 
 const store = configureStore();
 
@@ -18,10 +15,7 @@ class App extends React.Component {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={()=> <Splash/>}/>
-            <Route exact path="/greeter" render={()=> <Greeter name='Joe' />}/>
-            <Route exact path="/counter" render={()=> <Counter/>}/>
-            <Route exact path="/things" render={()=> <Things/>}/>
+            <Route exact path="/" render={()=> <StartMenu/>}/>
           </Switch>
         </BrowserRouter>
       </Provider>

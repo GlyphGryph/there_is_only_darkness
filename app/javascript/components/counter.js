@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import  * as Action from '../actions';
+import  * as ThingActions from '../actions/things';
 
 class Counter extends React.Component {
   render(){
@@ -21,9 +21,9 @@ class Counter extends React.Component {
 }
 
 const mapDispatchToProps = {
-  increment: Action.increment,
-  decrement: Action.decrement,
-  reset: Action.reset
+  increment: ThingActions.increment,
+  decrement: ThingActions.decrement,
+  reset: ThingActions.reset
 }
 
 function mapStateToProps(state) {
