@@ -36,19 +36,26 @@ o | Groundwork on Intro
     x | Paths belongs_to a World
     x | Paths belongs_to a "startpoint" and an "endpoint" Region
   x | When a world is created, create two Regions, and assign the character to the first region.
-  o | The Description of both regions is "There is Only Darkness"
-  o | Create a table of Actions with columns region_id and type, belongs_to Region
-  o | Regions has_many Actions
-  o | Both Regions have associated Action with type :walk
-  o | The first Region has a Path to the second (but not vice versa)
-  o | Have a flat file with descriptions for action types, have :walk map to "Walk Through Darkness"
-  o | When a player enters a region, on the front end they receive the list of action types and associated descriptions, data for old regions is wiped away.
-  o | Display Action card with description and type in section labeled "What can I do here?"
-  o | Have button in action card to select it
-  o | Have logic on back end in response advance the world a turn, and move the player down the first Path to associate with a new Region.
+    x | Have a path connect the first region to the second
+  o | The Descriptions are "There is only Darkness", "There is only Darkness 2"
+  o | Regions return a list of "actions" as a type, with names
+  o | If there are exit paths, the region has an action {type: :walk, name: "Walk Through Darkness"}
+  o | When a player is in a region a region, on the front end, they see its information
+    o They see the Region name and description
+    o They see the the list of action types as their associated name
+  o | Display Action 
+    o | Add div with title text "What can I do here?"
+    o | Add divs with borders and buttons for each action associated with this region.
+  o | Make actions functional
+    o | Create action and result chain on front end
+    o | Create backend api point
+    o | Have logic on back end in response advance the world a turn
+    o | Select a path at random to follow
+    o | Change character to be associated with the new Region.
   o | Return "changed_region" status along with all details for new region
+    o Data for old regions is wiped away by each update - replace, don't combine!
   o | Update front end to reflect.
-  o | Create a series of nearly identical regions with descriptions (Might want to create a world generation script)
+  o | Create a series of nearly identical regions with descriptions
     o | "You walk through the darkness."
     o | "You find nothing."
     o | "You grow weaker."
@@ -62,6 +69,9 @@ o | Groundwork on Intro
   o | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
   o | Create a "waiting/loading" state to use when waiting for feedback from server
   o | Game state doesn't need to return an object called "gameState". It can just return the contents.
+  o | Add description progressions.
+    o | Default descriptions of rooms should be replaced once things are inside of them.
+    o | Add easter egg in the description progression for the initial series of rooms if the player manages to build something in them. "Is this really the wisest idea? You probably shouldn't be doing this."
 
 o | Support Tasks
   o | Switch db to postgres or mysql
