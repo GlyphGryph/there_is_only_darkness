@@ -13,7 +13,12 @@ function rootReducer(state=initialState, action){
     case Action.CREATE_WORLD_SUCCESS:
       return {
         ...state,
-        worldExists: action.gameState.worldExists
+        ...action.gameState
+      }
+    case Action.DESTROY_WORLD_SUCCESS:
+      return {
+        ...state,
+        ...action.gameState
       }
     default:
       return state

@@ -1,11 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import StartMenu from './start_menu';
+import WorldMenu from './world_menu';
 import * as Action from '../actions/index';
 
 const TextBody = (props)=>(
   <div id='text-body'>
     World Exists
+    <WorldMenu />
   </div>
 )
 

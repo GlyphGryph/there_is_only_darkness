@@ -1,3 +1,3 @@
 // Data store actions
-export * from './menu'
+export * from './world'
 export * from './state_manager'
