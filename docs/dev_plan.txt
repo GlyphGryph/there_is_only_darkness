@@ -27,13 +27,15 @@ o | Groundwork on Intro
     x | Create button with action to send destroy world request
     x | Create API endpoint to execute the request and return the new state
   x | Destroying a world causes the page to show the "Create World" option
-  o | Set up Reducer file structure, get it out of configureStore
-  o | Create a Region model that can be associated with a world.
-  o | Destroying a world destroys all associated regions
-  o | A Region has a name and description.
-  o | A Region has a has_many relationship with other Regions via a model called Paths.
-  o | A Region has a has_one relationship to a Character, who now has a belongs_to Region
-  o | When a world is created, create two Regions, and assign the character to the first region.
+  x | Create a Region model that can be associated with a world.
+    x | A Region has a name and description.
+    x | A Region has a has_one relationship to a Character, who now has a belongs_to Region
+    x | Destroying a world destroys all associated regions
+  x | A Region has connections with other Regions via a model called Paths.
+    x | Paths have a unique name, which is a random "Adjective" and "Noun" from a list
+    x | Paths belongs_to a World
+    x | Paths belongs_to a "startpoint" and an "endpoint" Region
+  x | When a world is created, create two Regions, and assign the character to the first region.
   o | The Description of both regions is "There is Only Darkness"
   o | Create a table of Actions with columns region_id and type, belongs_to Region
   o | Regions has_many Actions
@@ -56,7 +58,10 @@ o | Groundwork on Intro
     o | "You have nothing left."
     o | "You can go no further. You must look inward.”
   o | Fix error state for when a server request fails to load a world, create an error state perhaps?
+  o | Set up Reducer file structure, get it out of configureStore
   o | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
+  o | Create a "waiting/loading" state to use when waiting for feedback from server
+  o | Game state doesn't need to return an object called "gameState". It can just return the contents.
 
 o | Support Tasks
   o | Switch db to postgres or mysql

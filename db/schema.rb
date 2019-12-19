@@ -10,15 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_113616) do
+ActiveRecord::Schema.define(version: 2019_12_19_035338) do
 
   create_table "characters", force: :cascade do |t|
     t.integer "world_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "region_id"
+    t.index ["region_id"], name: "index_characters_on_region_id"
     t.index ["user_id"], name: "index_characters_on_user_id"
     t.index ["world_id"], name: "index_characters_on_world_id"
+  end
+
+  create_table "paths", force: :cascade do |t|
+    t.integer "source_id"
+    t.integer "destination_id"
+    t.integer "world_id"
+    t.string "name_one"
+    t.string "name_two"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["destination_id"], name: "index_paths_on_destination_id"
+    t.index ["source_id"], name: "index_paths_on_source_id"
+    t.index ["world_id"], name: "index_paths_on_world_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "world_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["world_id"], name: "index_regions_on_world_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,5 +67,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_113616) do
 
   add_foreign_key "characters", "users"
   add_foreign_key "characters", "worlds"
+  add_foreign_key "paths", "regions", column: "destination_id"
+  add_foreign_key "paths", "regions", column: "source_id"
   add_foreign_key "worlds", "users"
 end
