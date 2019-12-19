@@ -21,10 +21,12 @@ o | Groundwork on Intro
     x | Include initial state as a data attribute in the page
     x | Read the data attribute as part of the load initial state action
   x | Fix being not able to destroy worlds, change to world belongs_to :user maybe?
-  o | They should see a button that says "Destroy World" that destroys the world and character
-    o | Add a dependent: :destroy to remove characters associated with destroyed world
-    o | Add logic to destroy world if user destroyed
-  o | Destroying a world causes the page to show the "Create World" option
+  x | They should see a button that says "Destroy World" that destroys the world and character
+    x | Add a dependent: :destroy to remove characters associated with destroyed world
+    x | Add logic to destroy world if user destroyed
+    x | Create button with action to send destroy world request
+    x | Create API endpoint to execute the request and return the new state
+  x | Destroying a world causes the page to show the "Create World" option
   o | Set up Reducer file structure, get it out of configureStore
   o | Create a Region model that can be associated with a world.
   o | Destroying a world destroys all associated regions
@@ -53,7 +55,8 @@ o | Groundwork on Intro
     o | "You are reduced to a crawl."
     o | "You have nothing left."
     o | "You can go no further. You must look inward.”
-  o | Fix error state for when a server request fails to load a world
+  o | Fix error state for when a server request fails to load a world, create an error state perhaps?
+  o | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
 
 o | Support Tasks
   o | Switch db to postgres or mysql
