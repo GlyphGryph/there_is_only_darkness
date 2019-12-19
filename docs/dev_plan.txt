@@ -8,17 +8,24 @@ o | Groundwork on Intro
     x | Send request to server
     x | Send AJAX with CSRF token to keep devise happy
     x | Have controller actually create new character and world
-  o | Get a git repo setup on the shared drive
-  o | Change Page Title
+  x | Change Page Title
   x | Have front-end state "in world" that it receives from the server if a world exists for user
     x | Return the correct values
     x | Populate the state correctly
-  o | When a player refreshed the page and has a World, they should see "World Joined"
-    o | Create new Game component
-    o | Load menu or game component depending on state of world
-    o | When the page is loaded, include the initial state with the correct value
+  x | When a player refreshes the page and has a World, they should see "World Joined"
+    x | Create new Game component
+    x | Load menu or game component depending on state of world
+    x | Update the front end with a conditional that displays different text when worldExists=true
+    x | Break out the "gameState" into it's own generator function in User
+    x | Get logic to run a "load initial state" function
+    x | Include initial state as a data attribute in the page
+    x | Read the data attribute as part of the load initial state action
+  x | Fix being not able to destroy worlds, change to world belongs_to :user maybe?
   o | They should see a button that says "Destroy World" that destroys the world and character
-  o | Destroying a world refreshes the page to the "Create World" option
+    o | Add a dependent: :destroy to remove characters associated with destroyed world
+    o | Add logic to destroy world if user destroyed
+  o | Destroying a world causes the page to show the "Create World" option
+  o | Set up Reducer file structure, get it out of configureStore
   o | Create a Region model that can be associated with a world.
   o | Destroying a world destroys all associated regions
   o | A Region has a name and description.
@@ -46,10 +53,14 @@ o | Groundwork on Intro
     o | "You are reduced to a crawl."
     o | "You have nothing left."
     o | "You can go no further. You must look inward.”
+  o | Fix error state for when a server request fails to load a world
 
 o | Support Tasks
   o | Switch db to postgres or mysql
   o | Download jsx syntax support for Vim
+  o | Get a git repo setup on the shared drive
+  x | Recover old project files for reference
+  o | Look into reselect
 o |
 o |
 o |

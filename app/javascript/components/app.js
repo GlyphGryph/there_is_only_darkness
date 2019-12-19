@@ -5,9 +5,12 @@ import { Provider } from 'react-redux';
 
 import configureStore from '../configureStore';
 
-import StartMenu from './start_menu';
+import Game from './game';
 
-const store = configureStore();
+const initialState = {
+  stateLoaded: false
+};
+const store = configureStore(initialState);
 
 class App extends React.Component {
   render(){
@@ -15,11 +18,12 @@ class App extends React.Component {
       <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={()=> <StartMenu/>}/>
+            <Route exact path="/" render={()=> <Game/>}/>
           </Switch>
         </BrowserRouter>
       </Provider>
     )
   }
 }
-export default App
+
+export default App;

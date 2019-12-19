@@ -1,4 +1,4 @@
 class World < ApplicationRecord
-  has_one :user
-  has_one :characters
+  belongs_to :user
+  has_one :character, dependent: :destroy
 end

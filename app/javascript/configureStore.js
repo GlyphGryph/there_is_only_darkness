@@ -1,27 +1,29 @@
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from 'redux-thunk';
-import * as Action from 'actions/menu'
-
-const initialState = {
-  world_exists: false
-};
+import * as Action from 'actions/index'
 
 function rootReducer(state=initialState, action){
   console.log(action.type);
   switch(action.type){
+    case Action.LOAD_INITIAL_STATE:
+      return {
+        ...action.gameState,
+        stateLoaded: true
+      }
     case Action.CREATE_WORLD_SUCCESS:
       return {
         ...state,
-        world_exists: action.gameState.world_exists
+        worldExists: action.gameState.worldExists
       }
     default:
       return state
   }
 }
 
-export default function configureStore() {
+export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
+    initialState,
     compose(
       applyMiddleware(thunk),
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

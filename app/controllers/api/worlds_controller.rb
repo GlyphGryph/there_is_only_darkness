@@ -3,16 +3,11 @@ class Api::WorldsController < ApplicationController
 
   def create
     if(current_user.world.nil?)
-      current_user.world = World.create
-      current_user.save!
-      Character.create(user: current_user)
-      render json: { gameState: {
-        world_exists: true
-      }}.to_json
+      world = World.create!(user: current_user)
+      Character.create!(user: current_user, world: world)
+      render json: current_user.get_game_state
     else
-      render json: { gameState: {
-        world_exists: true
-      }}.to_json
+      render json: current_user.get_game_state
     end
   end
 end

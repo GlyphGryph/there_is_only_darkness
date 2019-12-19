@@ -29,19 +29,19 @@ ActiveRecord::Schema.define(version: 2019_12_15_113616) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "world_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["world_id"], name: "index_users_on_world_id"
   end
 
   create_table "worlds", force: :cascade do |t|
     t.integer "turn"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_worlds_on_user_id"
   end
 
   add_foreign_key "characters", "users"
   add_foreign_key "characters", "worlds"
-  add_foreign_key "users", "worlds"
+  add_foreign_key "worlds", "users"
 end

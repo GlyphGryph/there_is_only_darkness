@@ -5,5 +5,6 @@ class PagesController < ApplicationController
     unless(user_signed_in?)
       redirect_to new_user_session_path
     end
+    @game_state = current_user.get_game_state
   end
 end

@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import * as MenuActions from '../actions/menu';
+import * as Action from '../actions/index';
 
 class StartMenu extends React.Component {
+
   render(){
     return (
-      <div>
-        <button className="CreateWorldButton" onClick={this.props.createWorld}>
+      <div id='start-menu'>
+        <button className="create-world-button" onClick={this.props.createWorld}>
           Create World
         </button>
       </div>
@@ -15,7 +16,7 @@ class StartMenu extends React.Component {
 }
 
 const mapDispatchToProps = {
-  createWorld: MenuActions.createWorld
+  createWorld: Action.createWorld
 }
 
 function mapStateToProps(state){
