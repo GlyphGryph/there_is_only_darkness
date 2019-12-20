@@ -20,6 +20,11 @@ function rootReducer(state=initialState, action){
         ...state,
         ...action.gameState
       }
+    case Action.SELECT_ACTIVITY_SUCCESS:
+      return {
+        ...state,
+        ...action.gameState
+      }
     default:
       return state
   }

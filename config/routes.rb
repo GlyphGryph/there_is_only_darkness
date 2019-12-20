@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   namespace :api, defaults: { format: 'json' } do
-    get 'things', to: 'things#index'
     post 'world/create', to: 'worlds#create'
     post 'world/destroy', to: 'worlds#destroy'
+    post 'activity/select', to: 'activities#select'
   end
 
   get '*page', to:'pages#index', constrains: ->(req)do

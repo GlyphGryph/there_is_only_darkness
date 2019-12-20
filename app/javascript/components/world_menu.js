@@ -6,7 +6,7 @@ class WorldMenu extends React.Component {
 
   render(){
     return (
-      <div id='start-menu'>
+      <div id='world-menu'>
         <button className="destroy-world-button" onClick={this.props.destroyWorld}>
           Destroy World
         </button>

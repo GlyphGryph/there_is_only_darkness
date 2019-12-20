@@ -2,19 +2,20 @@ import React from 'react'
 import {connect} from 'react-redux';
 import StartMenu from './start_menu';
 import WorldMenu from './world_menu';
+import Region from './region';
 import * as Action from '../actions/index';
 
-const TextBody = (props)=>(
-  <div id='text-body'>
-    World Exists
+const World = (props)=>(
+  <div id='World'>
     <WorldMenu />
+    <Region />
   </div>
 )
 
 const LoadedGame = (props)=>{
   return (
     <div className='wrapper'>
-      {props.worldExists ? <TextBody /> : <StartMenu />}
+      {props.worldExists ? <World /> : <StartMenu />}
     </div>
   )
 }

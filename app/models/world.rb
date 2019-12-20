@@ -4,7 +4,9 @@ class World < ApplicationRecord
   has_many :regions
   has_many :paths
   before_destroy :disassemble_world
-
+  validates :turn, presence: true
+  
+  before_validation :set_world_properties
   after_create :generate_world
 
   @@name_one_list = [
@@ -25,6 +27,10 @@ class World < ApplicationRecord
   ]
 
 private
+  def set_world_properties
+    self.turn = 0
+  end
+
   def generate_world
     name_one = @@name_one_list.sample
     name_two = @@name_two_list.sample
@@ -36,7 +42,7 @@ private
     region_two = Region.create!(
       world: self,
       name: "There Is Only Darkness 2",
-      description: "There is only darkness."
+      description: "There is still only darkness."
     )
     path_one = Path.create!(
       world: self,
