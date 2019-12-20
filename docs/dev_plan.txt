@@ -37,9 +37,13 @@ o | Groundwork on Intro
     x | Paths belongs_to a "startpoint" and an "endpoint" Region
   x | When a world is created, create two Regions, and assign the character to the first region.
     x | Have a path connect the first region to the second
-  o | The Descriptions are "There is only Darkness", "There is only Darkness 2"
-  o | Regions return a list of "actions" as a type, with names
-  o | If there are exit paths, the region has an action {type: :walk, name: "Walk Through Darkness"}
+  x | The Descriptions are "There is only Darkness", "There is only Darkness 2"
+  x | Regions return a list of "actions" as a type, with names
+  x | If there are exit paths, the region has an action {type: :walk, name: "Walk Through Darkness"}
+  x | Ceate a "RegionState" method
+    x | It returns the state of a region
+    x | Add it's results to gameState for appropriate regions
+    x | Include name, description, actions, circumstances (i.e. paths)
   o | When a player is in a region a region, on the front end, they see its information
     o They see the Region name and description
     o They see the the list of action types as their associated name
@@ -54,8 +58,11 @@ o | Groundwork on Intro
     o | Change character to be associated with the new Region.
   o | Return "changed_region" status along with all details for new region
     o Data for old regions is wiped away by each update - replace, don't combine!
+  o | On the turn you enter the region, also display "You have traveled down <Path Name> to reach this place."
+    o | Grab this from PathState
   o | Update front end to reflect.
-  o | Create a series of nearly identical regions with descriptions
+  o | Create a series of nearly identical regions with descriptions "There is Only Darkness"
+  o | Add the path message for each of those initial connections as:
     o | "You walk through the darkness."
     o | "You find nothing."
     o | "You grow weaker."

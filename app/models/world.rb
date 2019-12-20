@@ -30,13 +30,13 @@ private
     name_two = @@name_two_list.sample
     region_one = Region.create!(
       world: self,
-      name: "Region One",
-      description: "First Region"
+      name: "There Is Only Darkness",
+      description: "There is only darkness."
     )
     region_two = Region.create!(
       world: self,
-      name: "Region Two",
-      description: "Second Region"
+      name: "There Is Only Darkness 2",
+      description: "There is only darkness."
     )
     path_one = Path.create!(
       world: self,

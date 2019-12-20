@@ -15,13 +15,7 @@ class User < ApplicationRecord
     if(world.present?)
       game_state[:gameState][:worldId] = world.id
       game_state[:gameState][:characterId] = character.id
-      game_state[:gameState][:region] = {
-        name: character.region.name,
-        description: character.region.description
-      }
-      game_state[:gameState][:exits] = character.region.exits.map do |path|
-        {name: path.name}
-      end
+      game_state[:gameState][:region] = character.region.get_state
     end
     
     game_state.to_json
