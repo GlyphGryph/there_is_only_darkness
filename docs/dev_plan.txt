@@ -46,7 +46,7 @@ o | Groundwork on Intro
     x | Include name, description, actions, circumstances (i.e. paths)
   x | When a player is in a region a region, on the front end, they see its information
     x They see the Region description
-    o They see the the list of action types as their associated name
+    x They see the the list of action types as their associated name
   x | Display Action 
     x | Add div with title text "What can I do here?"
     x | Add divs with borders and buttons for each action associated with this region.
@@ -59,12 +59,12 @@ o | Groundwork on Intro
     x | Have changes reflected in reducer
     x Data for old regions is wiped away by each update - replace, don't combine!
   o | On the turn you enter the region, also display "You have traveled down <Path Name> to reach this place."
-    o | Whenever a character takes an action, set a new "events" property on character.
-    o | When a Path is walked, set the above text as a new event replacing the old.
-    o | Return the events in the game state under character state
-    o | Display the event on the front end
+    x | Whenever a character takes an action, set a new "events" property on character.
+    x | When a Path is walked, set the above text as a new event replacing the old.
+    x | Return the events in the game state under character state
+    x | Display the event on the front end
   o | Create a series of nearly identical regions with descriptions "There is Only Darkness"
-  o | Add the path message for each of those initial connections as:
+  o | Add a custom path message for each of those initial connections as, use default message if no custom path exists:
     o | "You walk through the darkness."
     o | "You find nothing."
     o | "You grow weaker."

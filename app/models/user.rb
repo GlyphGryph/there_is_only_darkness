@@ -13,8 +13,8 @@ class User < ApplicationRecord
     }}
 
     if(world.present?)
-      game_state[:gameState][:worldId] = world.id
-      game_state[:gameState][:characterId] = character.id
+      game_state[:gameState][:world] = world.get_state
+      game_state[:gameState][:character] = character.get_state
       game_state[:gameState][:region] = character.region.get_state
     end
     

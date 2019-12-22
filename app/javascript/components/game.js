@@ -3,14 +3,16 @@ import {connect} from 'react-redux';
 import StartMenu from './start_menu';
 import WorldMenu from './world_menu';
 import Region from './region';
+import Events from './events';
 import * as Action from '../actions/index';
 
 const World = (props)=>(
   <div id='World'>
     <WorldMenu />
+    <Events />
     <Region />
   </div>
-)
+);
 
 const LoadedGame = (props)=>{
   return (
@@ -18,12 +20,13 @@ const LoadedGame = (props)=>{
       {props.worldExists ? <World /> : <StartMenu />}
     </div>
   )
-}
+};
+
 const UnloadedGame = (props)=>(
   <div id='text-body'>
     Game Loading...
   </div>
-)
+);
 
 class Game extends React.Component {
   componentDidMount(){
@@ -46,7 +49,8 @@ const mapDispatchToProps = {
 function mapStateToProps(state){
   return {
     stateLoaded: state.stateLoaded,
-    worldExists: state.worldExists
+    worldExists: state.worldExists,
+    character: state.character
   };
 }
 

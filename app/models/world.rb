@@ -26,6 +26,10 @@ class World < ApplicationRecord
     "Winds"
   ]
 
+  def get_state
+    {id: id}
+  end
+
 private
   def set_world_properties
     self.turn = 0
