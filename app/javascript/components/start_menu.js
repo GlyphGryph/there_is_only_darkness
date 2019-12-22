@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import * as Action from '../actions/index';
 
 class StartMenu extends React.Component {
-
   render(){
     return (
       <div id='start-menu'>

@@ -58,24 +58,24 @@ o | Groundwork on Intro
     x | Change character to be associated with the new Region.
     x | Have changes reflected in reducer
     x Data for old regions is wiped away by each update - replace, don't combine!
-  o | On the turn you enter the region, also display "You have traveled down <Path Name> to reach this place."
+  x | On the turn you enter the region, also display "You have traveled down <Path Name> to reach this place."
     x | Whenever a character takes an action, set a new "events" property on character.
     x | When a Path is walked, set the above text as a new event replacing the old.
     x | Return the events in the game state under character state
     x | Display the event on the front end
-  o | Create a series of nearly identical regions with descriptions "There is Only Darkness"
-  o | Add a custom path message for each of those initial connections as, use default message if no custom path exists:
-    o | "You walk through the darkness."
-    o | "You find nothing."
-    o | "You grow weaker."
-    o | "Your steps grow heavy. The darkness clings to you like oil."
-    o | "You slow. The darkness rides on your back."
-    o | "You are reduced to a crawl."
-    o | "You have nothing left."
-    o | "You can go no further. You must look inward.”
+  x | Create a series of nearly identical regions with descriptions "There is Only Darkness"
+  x | Add a custom path message for each of those initial connections as, use default message if no custom path exists:
+    x | "You walk through the darkness."
+    x | "You find nothing."
+    x | "You grow weaker."
+    x | "Your steps grow heavy. The darkness clings to you like oil."
+    x | "You slow. The darkness rides on your back."
+    x | "You are reduced to a crawl."
+    x | "You have nothing left."
+    x | "You can go no further. You must look inward.”
   o | Fix error state for when a server request fails to load a world, create an error state perhaps?
-  o | Set up Reducer file structure, get it out of configureStore
-  o | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
+  x | Set up Reducer file structure, get it out of configureStore
+  x | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
   o | Create a "waiting/loading" state to use when waiting for feedback from server
   o | Game state doesn't need to return an object called "gameState". It can just return the contents.
   o | Add description progressions.
@@ -84,8 +84,8 @@ o | Groundwork on Intro
 
 o | Support Tasks
   o | Switch db to postgres or mysql
-  o | Download jsx syntax support for Vim
-  o | Get a git repo setup on the shared drive
+  x | Download jsx syntax support for Vim
+  x | Get a git repo setup on the shared drive or remote
   x | Recover old project files for reference
   o | Look into reselect
 

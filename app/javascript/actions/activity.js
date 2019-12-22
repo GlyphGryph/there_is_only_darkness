@@ -15,7 +15,7 @@ export const selectActivity = (id)=>{
       method: 'post'
     }).then(response => response.json())
     .then(json => dispatch(selectActivitySuccess(json)))
-    .catch(error => dispatch(selectActivityFailure(json)))
+    .catch(error => dispatch(selectActivityFailure()))
   }
 };
 export const selectActivitySuccess = (response) => (
@@ -24,9 +24,8 @@ export const selectActivitySuccess = (response) => (
     gameState: response.gameState
   }
 );
-export const selectActivityFailure = (response) => (
+export const selectActivityFailure = () => (
   { 
-    type: SELECT_ACTIVITY_FAILURE,
-    gameState: response.gameState
+    type: SELECT_ACTIVITY_FAILURE
   }
 );

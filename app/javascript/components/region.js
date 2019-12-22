@@ -24,8 +24,8 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state){
   return {
-    description: state.region.description,
-    activities: state.region.activities
+    description: state.server.region.description,
+    activities: state.server.region.activities
   };
 }
 

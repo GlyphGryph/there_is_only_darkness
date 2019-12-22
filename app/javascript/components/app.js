@@ -7,10 +7,7 @@ import configureStore from '../configureStore';
 
 import Game from './game';
 
-const initialState = {
-  stateLoaded: false
-};
-const store = configureStore(initialState);
+const store = configureStore();
 
 class App extends React.Component {
   render(){

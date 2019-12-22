@@ -24,7 +24,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state){
   return {
-    events: state.character.events
+    events: state.server.character.events
   };
 }
 

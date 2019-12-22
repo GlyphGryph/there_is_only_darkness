@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_22_145028) do
+ActiveRecord::Schema.define(version: 2019_12_22_151506) do
 
   create_table "characters", force: :cascade do |t|
     t.integer "world_id", null: false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_12_22_145028) do
     t.string "name_two"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "custom_travel_message"
     t.index ["destination_id"], name: "index_paths_on_destination_id"
     t.index ["source_id"], name: "index_paths_on_source_id"
     t.index ["world_id"], name: "index_paths_on_world_id"

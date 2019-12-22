@@ -1,34 +1,11 @@
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from 'redux-thunk';
-import * as Action from 'actions/index'
+import rootReducer from 'reducers/index';
 
-function rootReducer(state=initialState, action){
-  console.log(action.type);
-  switch(action.type){
-    case Action.LOAD_INITIAL_STATE:
-      return {
-        ...action.gameState,
-        stateLoaded: true
-      }
-    case Action.CREATE_WORLD_SUCCESS:
-      return {
-        ...state,
-        ...action.gameState
-      }
-    case Action.DESTROY_WORLD_SUCCESS:
-      return {
-        ...state,
-        ...action.gameState
-      }
-    case Action.SELECT_ACTIVITY_SUCCESS:
-      return {
-        ...state,
-        ...action.gameState
-      }
-    default:
-      return state
-  }
-}
+const initialState = {
+  client: {},
+  server: {}
+};
 
 export default function configureStore(initialState) {
   const store = createStore(

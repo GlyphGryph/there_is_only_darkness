@@ -28,17 +28,29 @@ const UnloadedGame = (props)=>(
   </div>
 );
 
+const ErrorComponent = ()=>(
+  <div id='error'>
+    It broke
+  </div>
+)
+
 class Game extends React.Component {
   componentDidMount(){
     this.props.loadInitialState()
   }
 
   render(){
-    return (
-      <div id='game'>
-        {this.props.stateLoaded ? <LoadedGame worldExists={this.props.worldExists} /> : <UnloadedGame />}
-      </div>
-    )
+    if(this.props.error){
+      return (
+        <ErrorComponent />
+      )
+    }else{
+      return (
+        <div id='game'>
+          {this.props.stateLoaded ? <LoadedGame worldExists={this.props.worldExists} /> : <UnloadedGame />}
+        </div>
+      )
+    }
   }
 }
 
@@ -48,9 +60,10 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state){
   return {
-    stateLoaded: state.stateLoaded,
-    worldExists: state.worldExists,
-    character: state.character
+    stateLoaded: state.client.stateLoaded,
+    error: state.client.error,
+    worldExists: state.server.worldExists,
+    character: state.server.character
   };
 }
 

@@ -36,30 +36,49 @@ private
   end
 
   def generate_world
-    name_one = @@name_one_list.sample
-    name_two = @@name_two_list.sample
-    region_one = Region.create!(
+    travel_messages = [
+      "You walk through the darkness.",
+      "You find nothing.",
+      "You grow weaker.",
+      "Your steps grow heavy. The darkness clings to you like oil.",
+      "You slow. The darkness rides on your back.",
+      "You are reduced to a crawl.",
+      "You have nothing left.",
+      "You can go no further. You must look inward."
+    ]
+
+    # Make first region
+    last_region = Region.create!(
       world: self,
-      name: "There Is Only Darkness",
+      name: "There Is Only Darkness #0",
       description: "There is only darkness."
-    )
-    region_two = Region.create!(
-      world: self,
-      name: "There Is Only Darkness 2",
-      description: "There is still only darkness."
-    )
-    path_one = Path.create!(
-      world: self,
-      name_one: name_one,
-      name_two: name_two,
-      source: region_one,
-      destination: region_two
     )
     character = Character.create!(
       world: self,
       user: user,
-      region: region_one
+      region: last_region
     )
+
+    # Make chain of followup regions
+    travel_messages.each_with_index do |message, index|
+      name_one = @@name_one_list.sample
+      name_two = @@name_two_list.sample
+
+      new_region = Region.create!(
+        world: self,
+        name: "There Is Only Darkness ##{index+1}",
+        description: "There is still only darkness."
+      )
+      path_one = Path.create!(
+        world: self,
+        name_one: name_one,
+        name_two: name_two,
+        source: last_region,
+        destination: new_region,
+        custom_travel_message: message
+      )
+      last_region = new_region
+    end
   end
   
   def disassemble_world

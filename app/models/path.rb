@@ -8,8 +8,12 @@ class Path < ApplicationRecord
   def name
     "The Path of #{name_one} #{name_two}"
   end
-  
-  def travel_message
+
+  def default_travel_message
     "You have traveled down #{name} to reach this place."
+  end
+
+  def travel_message
+    custom_travel_message || default_travel_message
   end
 end

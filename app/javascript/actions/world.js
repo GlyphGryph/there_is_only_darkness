@@ -18,7 +18,7 @@ export const createWorld = ()=>{
       method: 'post'
     }).then(response => response.json())
     .then(json => dispatch(createWorldSuccess(json)))
-    .catch(error => dispatch(createWorld(json)))
+    .catch(error => dispatch(createWorld()))
   }
 };
 export const createWorldSuccess = (response) => (
@@ -27,10 +27,9 @@ export const createWorldSuccess = (response) => (
     gameState: response.gameState
   }
 );
-export const createWorldFailure = (response) => (
+export const createWorldFailure = () => (
   { 
-    type: CREATE_WORLD_FAILURE,
-    gameState: response.gameState
+    type: CREATE_WORLD_FAILURE
   }
 );
 
@@ -55,9 +54,8 @@ export const destroyWorldSuccess = (response) => (
     gameState: response.gameState
   }
 );
-export const destroyWorldFailure = (response) => (
+export const destroyWorldFailure = () => (
   { 
-    type: DESTROY_WORLD_FAILURE,
-    gameState: response.gameState
+    type: DESTROY_WORLD_FAILURE
   }
 );
