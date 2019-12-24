@@ -1,88 +1,45 @@
-x | Implement Users
-o | Groundwork on Intro
-  x | Create Character that belongs_to :user and :world
-  x | Create World with state "turn" and has_one :character and has_one :user
-  x | Add belongs_to :worlds and has_many :characters to User
-  x | Add a Clickable "Create World" button that creates a new world and character for the user
-    x | Add a clickable button
-    x | Send request to server
-    x | Send AJAX with CSRF token to keep devise happy
-    x | Have controller actually create new character and world
-  x | Change Page Title
-  x | Have front-end state "in world" that it receives from the server if a world exists for user
-    x | Return the correct values
-    x | Populate the state correctly
-  x | When a player refreshes the page and has a World, they should see "World Joined"
-    x | Create new Game component
-    x | Load menu or game component depending on state of world
-    x | Update the front end with a conditional that displays different text when worldExists=true
-    x | Break out the "gameState" into it's own generator function in User
-    x | Get logic to run a "load initial state" function
-    x | Include initial state as a data attribute in the page
-    x | Read the data attribute as part of the load initial state action
-  x | Fix being not able to destroy worlds, change to world belongs_to :user maybe?
-  x | They should see a button that says "Destroy World" that destroys the world and character
-    x | Add a dependent: :destroy to remove characters associated with destroyed world
-    x | Add logic to destroy world if user destroyed
-    x | Create button with action to send destroy world request
-    x | Create API endpoint to execute the request and return the new state
-  x | Destroying a world causes the page to show the "Create World" option
-  x | Create a Region model that can be associated with a world.
-    x | A Region has a name and description.
-    x | A Region has a has_one relationship to a Character, who now has a belongs_to Region
-    x | Destroying a world destroys all associated regions
-  x | A Region has connections with other Regions via a model called Paths.
-    x | Paths have a unique name, which is a random "Adjective" and "Noun" from a list
-    x | Paths belongs_to a World
-    x | Paths belongs_to a "startpoint" and an "endpoint" Region
-  x | When a world is created, create two Regions, and assign the character to the first region.
-    x | Have a path connect the first region to the second
-  x | The Descriptions are "There is only Darkness", "There is only Darkness 2"
-  x | Regions return a list of "actions" as a type, with names
-  x | If there are exit paths, the region has an action {type: :walk, name: "Walk Through Darkness"}
-  x | Ceate a "RegionState" method
-    x | It returns the state of a region
-    x | Add it's results to gameState for appropriate regions
-    x | Include name, description, actions, circumstances (i.e. paths)
-  x | When a player is in a region a region, on the front end, they see its information
-    x They see the Region description
-    x They see the the list of action types as their associated name
-  x | Display Action 
-    x | Add div with title text "What can I do here?"
-    x | Add divs with borders and buttons for each action associated with this region.
-  x | Make actions functional
-    x | Create action and result chain on front end
-    x | Create backend api point
-    x | Have logic on back end in response advance the world a turn
-    x | Select a path at random to follow
-    x | Change character to be associated with the new Region.
-    x | Have changes reflected in reducer
-    x Data for old regions is wiped away by each update - replace, don't combine!
-  x | On the turn you enter the region, also display "You have traveled down <Path Name> to reach this place."
-    x | Whenever a character takes an action, set a new "events" property on character.
-    x | When a Path is walked, set the above text as a new event replacing the old.
-    x | Return the events in the game state under character state
-    x | Display the event on the front end
-  x | Create a series of nearly identical regions with descriptions "There is Only Darkness"
-  x | Add a custom path message for each of those initial connections as, use default message if no custom path exists:
-    x | "You walk through the darkness."
-    x | "You find nothing."
-    x | "You grow weaker."
-    x | "Your steps grow heavy. The darkness clings to you like oil."
-    x | "You slow. The darkness rides on your back."
-    x | "You are reduced to a crawl."
-    x | "You have nothing left."
-    x | "You can go no further. You must look inward.”
-  o | Fix error state for when a server request fails to load a world, create an error state perhaps?
-  x | Set up Reducer file structure, get it out of configureStore
-  x | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
+Main Quest:
+  o | Add "event-linking"
+    o | Clickable links in region descriptions
+      x | Add "book" as a property of regions, serialized
+      x | Description used as a fallback if book is empty, but still dropped in Book format for json
+      x | Book is an array of "pages" (conceptually)
+      x | Each event-link definition points to a page number index. Format is [#text], so [3look inside]
+      x | Generate the first room with a Book that looks like this:
+        [ {text: "There is only [1Darkness]"},
+          {text: "There is only Darkness.", effect: :remove_suppression, target: :walk, type: :activity }
+        ]
+      x | Display all text in book to ensure it is loading correctly
+      x | Display initial text on page 0 of book on front end.
+      o | Parse string before display and replace braces with a <Link> element
+      o | Pass the number as an argument assigned to "page" on the Link element
+    o | Suppress visibility of Walk Through Darkness in initial region
+      o | Activities can now come with modifiers. :walk is modified with :suppressed in first region
+        o | Do this by adding a "activity_modifiers" serialized hash [activity name: modifier]
+        o | Activities method returns an array of hashes with name: "string"  and modifiers: ["strings"]
+      o | Parse the new format on the front end
+      o | Do not display an action if it is suppressed
+    o | Have event link restore it's visibility
+    o | Allow for clickable links in events as well, including those generated by event-linking
+  o | Add a "look inside" action. No server talk.
+    o | Event text is replaced with "Heart" text, which is in two parts. 
+    o | The first part is the Heart event text, which by default says "You have entered your many-chambered heart."
+    o | The second part is the descriptive text, which be default says "Your heart is still and quiet."
+    o | Have it load a grid of 6 squares to replace the region description.
+    o | Each square is clickable, which changes the Heart text to describe that chamber
+      o | The description of each square is "<First/Second/Third/...> Chamber: Full of Darkness."
+      o | The first click also displays the heart event: "Your heart has filled with the darkness that surrounds you."
+      o | Have heart events progress each time a chamber is clicked.
+        o | 
+
+Side Missions
   o | Create a "waiting/loading" state to use when waiting for feedback from server
   o | Game state doesn't need to return an object called "gameState". It can just return the contents.
   o | Add description progressions.
     o | Default descriptions of rooms should be replaced once things are inside of them.
     o | Add easter egg in the description progression for the initial series of rooms if the player manages to build something in them. "Is this really the wisest idea? You probably shouldn't be doing this."
 
-o | Support Tasks
+Support Tasks
   o | Switch db to postgres or mysql
   x | Download jsx syntax support for Vim
   x | Get a git repo setup on the shared drive or remote
@@ -91,3 +48,85 @@ o | Support Tasks
 
 o | Future tasks
   o | Base background and text color on light level in an area (full dark, partial dark, partial light, full light)
+
+Completed Missions
+  x | Implement Users
+  x | Groundwork on Intro
+    x | Create Character that belongs_to :user and :world
+    x | Create World with state "turn" and has_one :character and has_one :user
+    x | Add belongs_to :worlds and has_many :characters to User
+    x | Add a Clickable "Create World" button that creates a new world and character for the user
+      x | Add a clickable button
+      x | Send request to server
+      x | Send AJAX with CSRF token to keep devise happy
+      x | Have controller actually create new character and world
+    x | Change Page Title
+    x | Have front-end state "in world" that it receives from the server if a world exists for user
+      x | Return the correct values
+      x | Populate the state correctly
+    x | When a player refreshes the page and has a World, they should see "World Joined"
+      x | Create new Game component
+      x | Load menu or game component depending on state of world
+      x | Update the front end with a conditional that displays different text when worldExists=true
+      x | Break out the "gameState" into it's own generator function in User
+      x | Get logic to run a "load initial state" function
+      x | Include initial state as a data attribute in the page
+      x | Read the data attribute as part of the load initial state action
+    x | Fix being not able to destroy worlds, change to world belongs_to :user maybe?
+    x | They should see a button that says "Destroy World" that destroys the world and character
+      x | Add a dependent: :destroy to remove characters associated with destroyed world
+      x | Add logic to destroy world if user destroyed
+      x | Create button with action to send destroy world request
+      x | Create API endpoint to execute the request and return the new state
+    x | Destroying a world causes the page to show the "Create World" option
+    x | Create a Region model that can be associated with a world.
+      x | A Region has a name and description.
+      x | A Region has a has_one relationship to a Character, who now has a belongs_to Region
+      x | Destroying a world destroys all associated regions
+    x | A Region has connections with other Regions via a model called Paths.
+      x | Paths have a unique name, which is a random "Adjective" and "Noun" from a list
+      x | Paths belongs_to a World
+      x | Paths belongs_to a "startpoint" and an "endpoint" Region
+    x | When a world is created, create two Regions, and assign the character to the first region.
+      x | Have a path connect the first region to the second
+    x | The Descriptions are "There is only Darkness", "There is only Darkness 2"
+    x | Regions return a list of "actions" as a type, with names
+    x | If there are exit paths, the region has an action {type: :walk, name: "Walk Through Darkness"}
+    x | Ceate a "RegionState" method
+      x | It returns the state of a region
+      x | Add it's results to gameState for appropriate regions
+      x | Include name, description, actions, circumstances (i.e. paths)
+    x | When a player is in a region a region, on the front end, they see its information
+      x They see the Region description
+      x They see the the list of action types as their associated name
+    x | Display Action 
+      x | Add div with title text "What can I do here?"
+      x | Add divs with borders and buttons for each action associated with this region.
+    x | Make actions functional
+      x | Create action and result chain on front end
+      x | Create backend api point
+      x | Have logic on back end in response advance the world a turn
+      x | Select a path at random to follow
+      x | Change character to be associated with the new Region.
+      x | Have changes reflected in reducer
+      x Data for old regions is wiped away by each update - replace, don't combine!
+    x | On the turn you enter the region, also display "You have traveled down <Path Name> to reach this place."
+      x | Whenever a character takes an action, set a new "events" property on character.
+      x | When a Path is walked, set the above text as a new event replacing the old.
+      x | Return the events in the game state under character state
+      x | Display the event on the front end
+    x | Create a series of nearly identical regions with descriptions "There is Only Darkness"
+    x | Add a custom path message for each of those initial connections as, use default message if no custom path exists:
+      x | "You walk through the darkness."
+      x | "You find nothing."
+      x | "You grow weaker."
+      x | "Your steps grow heavy. The darkness clings to you like oil."
+      x | "You slow. The darkness rides on your back."
+      x | "You are reduced to a crawl."
+      x | "You have nothing left."
+      x | "You can go no further. You must look inward.”
+    x | Fix error state for when a server request fails to load a world, create an error state perhaps?
+    x | Set up Reducer file structure, get it out of configureStore
+    x | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
+
+

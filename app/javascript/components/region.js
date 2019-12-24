@@ -6,7 +6,11 @@ class Region extends React.Component {
   render(){
     return (
       <div id='region'>
-        <p>{this.props.description}</p>
+        <div>
+          {this.props.book.map((page, index) =>
+            <div key={index}>{page.text}</div>
+          )}
+        </div>
         
         <div id='activity-bar'>
           <p>What can I do here?</p>
@@ -24,7 +28,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state){
   return {
-    description: state.server.region.description,
+    book: state.server.region.book,
     activities: state.server.region.activities
   };
 }

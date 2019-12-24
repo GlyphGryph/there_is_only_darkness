@@ -51,7 +51,10 @@ private
     last_region = Region.create!(
       world: self,
       name: "There Is Only Darkness #0",
-      description: "There is only darkness."
+      book: [
+        {text: "There is only [1Darkness]"},
+        {text: "There is only Darkness.", effect: :remove_suppression, target: :walk, type: :activity }
+      ]
     )
     character = Character.create!(
       world: self,

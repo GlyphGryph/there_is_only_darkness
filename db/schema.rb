@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_22_151506) do
+ActiveRecord::Schema.define(version: 2019_12_24_035518) do
 
   create_table "characters", force: :cascade do |t|
     t.integer "world_id", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_12_22_151506) do
     t.integer "world_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "book"
     t.index ["world_id"], name: "index_regions_on_world_id"
   end
 
