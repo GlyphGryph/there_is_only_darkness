@@ -34,7 +34,13 @@ Main Quest:
         x | Throw an "unknown action" error if action is not valid
       x | Do not display "what can I do here?" unless there are actions to display
     x | Have event link restore it's visibility
-  o | Add a "look inside" linkable.
+  x | Add a "look inside" linkable.
+    x | Add linkable that unsupresses a "Heart" action
+    x | Add heart action to backend, suppress on all regions
+    x | linkable unsupressed heart action
+    x | Style heart action on front end as red
+    x | Add "look outside" linkable to destroy the book for the last region. Defaults to description.
+  o | Add functional heart activity
     o | Event text is replaced with "Heart" text, which is in two parts. 
     o | The first part is the Heart event text, which by default says "You have entered your many-chambered heart."
     o | The second part is the descriptive text, which be default says "Your heart is still and quiet."

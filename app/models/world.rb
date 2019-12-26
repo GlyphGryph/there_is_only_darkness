@@ -44,19 +44,18 @@ private
       "You slow. The darkness rides on your back.",
       "You are reduced to a crawl.",
       "You have nothing left.",
-      "You can go no further. You must look inward."
     ]
 
     # Make first region
     last_region = Region.create!(
       world: self,
       name: "There Is Only Darkness #0",
-      activity_modifiers: {walk: [:suppress]},
+      activity_modifiers: {walk: [:suppress], heart: [:suppress]},
       book: [
         { text: "There is only [1Darkness].",
           links_to: [1]
         },
-        { text: "There is only Darkness.",
+        { text: "The darkness stretches out before you...",
           effects: {
             remove_suppression: :walk,
           }
@@ -77,6 +76,7 @@ private
       new_region = Region.create!(
         world: self,
         name: "There Is Only Darkness ##{index+1}",
+        activity_modifiers: {heart: [:suppress]},
         description: "There is still only darkness."
       )
       path_one = Path.create!(
@@ -89,6 +89,38 @@ private
       )
       last_region = new_region
     end
+
+    name_one = @@name_one_list.sample
+    name_two = @@name_two_list.sample
+
+    new_region = Region.create!(
+      world: self,
+      name: "Home",
+      activity_modifiers: {heart: [:suppress]},
+      description: "There is only darkness.",
+      book: [
+        { text: "You must [1look inward].",
+          links_to: [1]
+        },
+        { text: "You have opened the door to your own heart. When you are ready, you may [2look outward] again.",
+          links_to: [2],
+          effects: {
+            remove_suppression: :heart,
+          }
+        },
+        { effects: { remove_book: true } }
+      ]
+    )
+    path_one = Path.create!(
+      world: self,
+      name_one: name_one,
+      name_two: name_two,
+      source: last_region,
+      destination: new_region,
+      custom_travel_message: "You can go no further."
+    )
+    last_region = new_region
+
   end
   
   def disassemble_world

@@ -21,6 +21,9 @@ class Region < ApplicationRecord
     if(exits.present? && !modified?(:walk, :suppress))
       activities << :walk
     end
+    if(!modified?(:heart, :suppress))
+      activities << :heart
+    end
     return activities
   end
   
@@ -43,19 +46,23 @@ class Region < ApplicationRecord
   def turn_to_page(page_number)
     old_page = current_page
     new_page = book[page_number]
-    raise "Invalid page." unless old_page[:links_to] && old_page[:links_to].include?(page_number)
-    raise "Page does not exist." unless new_page.present?
+    raise "Invalid page ##{page_number} for page ##{current_page_number}." unless old_page[:links_to] && old_page[:links_to].include?(page_number)
+    raise "Page ##{page_number} does not exist." unless new_page.present?
+    todo = nil
     if(new_page[:effects].present?)
       new_page[:effects].each_pair do |key, value|
         if(:remove_suppression == key)
-          if(:walk == value)
-            modifier = activity_modifiers[:walk]
-            raise "Couldn't find activity." unless modifier.present?
-            raise "Activity is not suppressed." unless modifier.include?(:suppress)
-            modifier.delete(:suppress)
-          end
+          modifier = activity_modifiers[value]
+          raise "Couldn't find activity '#{value}'." unless modifier.present?
+          raise "Activity '#{value} is not suppressed." unless modifier.include?(:suppress)
+          modifier.delete(:suppress)
+        elsif(:remove_book == key && true==value)
+          todo = :remove_book
         end
       end
+    end
+    if(:remove_book == todo)
+      self.book = []
     end
     self.current_page_number = page_number
     self.save!
