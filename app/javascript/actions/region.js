@@ -1,10 +1,10 @@
 import token from '../token'
 import * as C from './constants'
 
-export const selectActivity = (id)=>{
+export const turnPage = (id)=>{
   return (dispatch) => {
-    dispatch({type: C.SELECT_ACTIVITY_REQUEST});
-    return fetch(`api/activity/select.json?id=${id}`,{
+    dispatch({type: C.TURN_PAGE_REQUEST});
+    return fetch(`api/page/turn.json?id=${id}`,{
       credentials: "same-origin",
       headers: {
         'Content-Type': 'application/json',
@@ -12,17 +12,17 @@ export const selectActivity = (id)=>{
       },
       method: 'post'
     }).then(response => response.json())
-    .then(json => dispatch(selectActivitySuccess(json)))
-    .catch(error => dispatch(selectActivityFailure()))
+    .then(json => dispatch(turnPageSuccess(json)))
+    .catch(error => dispatch(turnPageFailure()))
   }
 };
-export const selectActivitySuccess = (response) => (
+export const turnPageSuccess = (response) => (
   { 
     type: C.API_REQUEST_SUCCESS,
     gameState: response.gameState
   }
 );
-export const selectActivityFailure = () => (
+export const turnPageFailure = () => (
   { 
     type: C.API_REQUEST_FAILURE
   }

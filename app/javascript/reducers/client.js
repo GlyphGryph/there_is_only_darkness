@@ -1,4 +1,4 @@
-import * as Action from '../actions/index'
+import * as Action from '../actions/constants'
 
 const initialState = {
   stateLoaded: false,
@@ -12,17 +12,7 @@ const clientReducer = (state=initialState, action)=>{
         ...state,
         stateLoaded: true
       }
-    case Action.CREATE_WORLD_FAILURE:
-      return {
-        ...state,
-        error: true
-      }
-    case Action.DESTROY_WORLD_FAILURE:
-      return {
-        ...state,
-        error: true
-      }
-    case Action.SELECT_ACTIVITY_FAILURE:
+    case Action.API_REQUEST_FAILURE:
       return {
         ...state,
         error: true

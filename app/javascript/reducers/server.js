@@ -1,4 +1,4 @@
-import * as Action from '../actions/index'
+import * as Action from '../actions/constants'
 
 const initialState = {
   character: {},
@@ -13,17 +13,7 @@ const serverReducer = (state=initialState, action)=>{
         ...action.gameState,
         stateLoaded: true
       }
-    case Action.CREATE_WORLD_SUCCESS:
-      return {
-        ...state,
-        ...action.gameState
-      }
-    case Action.DESTROY_WORLD_SUCCESS:
-      return {
-        ...state,
-        ...action.gameState
-      }
-    case Action.SELECT_ACTIVITY_SUCCESS:
+    case Action.API_REQUEST_SUCCESS:
       return {
         ...state,
         ...action.gameState
