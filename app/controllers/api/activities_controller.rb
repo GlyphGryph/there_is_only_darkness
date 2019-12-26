@@ -2,7 +2,6 @@ class Api::ActivitiesController < ApplicationController
   before_action :authenticate_user!
 
   def select
-    raise
     current_user.world.turn += 1
     current_user.world.save!
     current_user.character.random_walk

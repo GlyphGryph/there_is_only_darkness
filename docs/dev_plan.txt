@@ -1,6 +1,6 @@
 Main Quest:
   o | Add "event-linking"
-    o | Clickable links in region descriptions
+    x | Clickable links in region descriptions
       x | Add "book" as a property of regions, serialized
       x | Description used as a fallback if book is empty, but still dropped in Book format for json
       x | Book is an array of "pages" (conceptually)
@@ -15,13 +15,13 @@ Main Quest:
       x | Parse string before display and replace braces with a <Link> element
       x | Pass the number as an argument assigned to "page" on the Link element
     o | Implement linkables to progress through text
-      o | add an attribute to region, "current_page", and set it to 0.
-      o | Pass single pages to the client side (or Description is no pages exists) based on current_page
-      o | When a linkable on the client side is clicked, trigger an action to send 'turn_to_page'
-      o | implement 'turn_to_page' api endpoint, which accepts a single number as an argument and returns the game state
-      o | turn_to_page sets the new current_page to the passed in page
-      o | modify the Book structure to include a list of valid page transitions for each page
-      o | return an error message unless the page being transitioned to is valid
+      x | add an attribute to region, "current_page", and set it to 0.
+      x | Pass single pages to the client side (or Description is no pages exists) based on current_page
+      x | When a linkable on the client side is clicked, trigger an action to send 'turn_to_page'
+      x | implement 'turn_to_page' api endpoint, which accepts a single number as an argument and returns the game state
+      x | turn_to_page sets the new current_page to the passed in page
+      x | modify the Book structure to include a list of valid page transitions for each page
+      x | return an error message unless the page being transitioned to is valid
     o | Suppress visibility of Walk Through Darkness in initial region
       o | Activities can now come with modifiers. :walk is modified with :suppressed in first region
         o | Do this by adding a "activity_modifiers" serialized hash [activity name: modifier]

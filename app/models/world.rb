@@ -52,8 +52,16 @@ private
       world: self,
       name: "There Is Only Darkness #0",
       book: [
-        {text: "There is only [1Darkness]"},
-        {text: "There is only Darkness.", effect: :remove_suppression, target: :walk, type: :activity }
+        { text: "There is only [1Darkness].",
+          links_to: [1]
+        },
+        { text: "There is only Darkness.",
+          effects: [{
+            id: :remove_suppression,
+            target: :walk,
+            type: :activity 
+          }]
+        }
       ]
     )
     character = Character.create!(
