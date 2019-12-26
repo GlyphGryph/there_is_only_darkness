@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Activity from './activity';
+import {pageReader} from '../helpers/page_reader';
 
 class Region extends React.Component {
   render(){
@@ -8,7 +9,7 @@ class Region extends React.Component {
       <div id='region'>
         <div>
           {this.props.book.map((page, index) =>
-            <div key={index}>{page.text}</div>
+            <div key={index}>{pageReader(page.text)}</div>
           )}
         </div>
         

@@ -11,6 +11,7 @@ Main Quest:
         ]
       x | Display all text in book to ensure it is loading correctly
       x | Display initial text on page 0 of book on front end.
+      x | Parse the string to render the linkables differently
       o | Parse string before display and replace braces with a <Link> element
       o | Pass the number as an argument assigned to "page" on the Link element
     o | Suppress visibility of Walk Through Darkness in initial region
