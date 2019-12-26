@@ -14,3 +14,16 @@ body{
   margin: 5px;
   padding: 5px;
 }
+
+.page-link{
+  display: inline;
+  text-decoration: underline;
+  color: #BCF;
+  cursor: pointer;
+  &:hover {
+    color: #CDF;
+  }
+  &:active {
+    color: #99C;
+  }
+}

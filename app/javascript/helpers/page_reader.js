@@ -1,5 +1,6 @@
 import React from 'react';
 import reactStringReplace from 'react-string-replace';
+import Link from '../components/link'
 
 export const pageReader = (text) => {
   return reactStringReplace(text, /(\[.*?\])/g, (match, ii) => {
@@ -8,7 +9,7 @@ export const pageReader = (text) => {
     const pageNumber = match[1];
     const body = match[2];
     return (
-      <span key={ii} style={{color:'#99F'}}>{body}</span>
+      <Link key={ii} number={pageNumber} text={body} />
     )
   });
 }
