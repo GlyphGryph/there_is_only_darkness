@@ -3,6 +3,22 @@ import {connect} from 'react-redux';
 import Activity from './activity';
 import {pageReader} from '../helpers/page_reader';
 
+
+const ActivityBar = (props)=>{
+  if(props.activities.length > 0){
+    return (
+      <div id='activity-bar'>
+        <p>What can I do here?</p>
+        {props.activities.map((activity) =>
+          <Activity activity={activity} key={activity}/>
+        )}
+      </div>
+    )
+  } else {
+    return null
+  }
+};
+
 class Region extends React.Component {
   render(){
     return (
@@ -11,12 +27,7 @@ class Region extends React.Component {
           {pageReader(this.props.page)}
         </div>
         
-        <div id='activity-bar'>
-          <p>What can I do here?</p>
-          {this.props.activities.map((activity) =>
-            <Activity activity={activity} key={activity}/>
-          )}
-        </div>
+        <ActivityBar activities={this.props.activities}/>
       </div>
     )
   }

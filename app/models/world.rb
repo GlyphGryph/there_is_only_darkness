@@ -51,16 +51,15 @@ private
     last_region = Region.create!(
       world: self,
       name: "There Is Only Darkness #0",
+      activity_modifiers: {walk: [:suppress]},
       book: [
         { text: "There is only [1Darkness].",
           links_to: [1]
         },
         { text: "There is only Darkness.",
-          effects: [{
-            id: :remove_suppression,
-            target: :walk,
-            type: :activity 
-          }]
+          effects: {
+            remove_suppression: :walk,
+          }
         }
       ]
     )

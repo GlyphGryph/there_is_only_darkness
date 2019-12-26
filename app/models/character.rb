@@ -4,6 +4,14 @@ class Character < ApplicationRecord
   belongs_to :region
   serialize :events, Array
 
+  def select_activity(activity_name)
+    if(:walk == activity_name && self.region.allows_activity?(activity_name))
+      self.random_walk
+    else
+      raise "Invalid Activity"
+    end
+  end
+
   def random_walk
     random_exit = region.exits.sample
     new_region = random_exit.destination
