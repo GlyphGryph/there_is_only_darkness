@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_142029) do
+ActiveRecord::Schema.define(version: 2019_12_27_231925) do
 
-  create_table "characters", force: :cascade do |t|
-    t.integer "world_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "region_id"
-    t.text "events"
-    t.index ["region_id"], name: "index_characters_on_region_id"
-    t.index ["user_id"], name: "index_characters_on_user_id"
-    t.index ["world_id"], name: "index_characters_on_world_id"
-  end
+# Could not dump table "characters" because of following StandardError
+#   Unknown type 'bool' for column 'heart_tutorial'
 
   create_table "paths", force: :cascade do |t|
     t.integer "source_id"

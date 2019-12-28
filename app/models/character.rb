@@ -2,7 +2,12 @@ class Character < ApplicationRecord
   belongs_to :world
   belongs_to :user
   belongs_to :region
+  # An array of text messages
   serialize :events, Array
+  # An array of Heart light statues
+  # [:none, :hope, :none, :none, :survival, :none, :none, :none]
+  # Current standard length is 6
+  serialize :heart, Array
 
   def select_activity(activity_name)
     if(:walk == activity_name && self.region.allows_activity?(activity_name))
@@ -23,7 +28,9 @@ class Character < ApplicationRecord
   def get_state
     state = {
       id: id,
-      events: events
+      events: events,
+      heart: heart,
+      heart_tutorial: heart_tutorial
     }
     return state
   end

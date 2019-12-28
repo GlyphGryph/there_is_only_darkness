@@ -2,7 +2,8 @@ import * as Action from '../actions/constants'
 
 const initialState = {
   stateLoaded: false,
-  error: false
+  error: false,
+  view: 'region'
 }
 
 const clientReducer = (state=initialState, action)=>{

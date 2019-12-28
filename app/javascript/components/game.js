@@ -6,31 +6,20 @@ import Region from './region';
 import Events from './events';
 import * as Action from '../actions/index';
 
-const World = (props)=>(
-  <div id='World'>
-    <WorldMenu />
-    <Events />
-    <Region />
-  </div>
-);
+const Heart = ()=> (<div>HEART PLACEHOLDER</div>)
 
-const LoadedGame = (props)=>{
-  return (
-    <div className='wrapper'>
-      {props.worldExists ? <World /> : <StartMenu />}
-    </div>
-  )
-};
-
-const UnloadedGame = (props)=>(
-  <div id='text-body'>
-    Game Loading...
-  </div>
-);
+const RegionView = ()=>(<div className='view'><Events /><Region /></div>)
+const HeartView = ()=>(<div className='view'><Heart /></div>)
 
 const ErrorComponent = ()=>(
   <div id='error'>
     It broke
+  </div>
+)
+
+const GameWrapper = (props)=>(
+  <div id='game'>
+    {props.children}
   </div>
 )
 
@@ -41,15 +30,31 @@ class Game extends React.Component {
 
   render(){
     if(this.props.error){
+       return (<ErrorComponent />)
+    }else if(!this.props.stateLoaded){
+      return (<GameWrapper>
+        <div id='text-body'>
+          Game Loading...
+        </div>
+      </GameWrapper>)
+    }else if(!this.props.worldExists){
+      return (<GameWrapper><StartMenu /></GameWrapper>)
+    }else if(this.props.view=='region'){
       return (
-        <ErrorComponent />
+        <GameWrapper>
+          <WorldMenu />
+          <RegionView />
+        </GameWrapper>
+      )
+    }else if(this.props.view=='heart'){
+      return (
+        <GameWrapper>
+          <WorldMenu />
+          <HeartView />
+        </GameWrapper>
       )
     }else{
-      return (
-        <div id='game'>
-          {this.props.stateLoaded ? <LoadedGame worldExists={this.props.worldExists} /> : <UnloadedGame />}
-        </div>
-      )
+      return (<ErrorComponent />)
     }
   }
 }
@@ -63,7 +68,8 @@ function mapStateToProps(state){
     stateLoaded: state.client.stateLoaded,
     error: state.client.error,
     worldExists: state.server.worldExists,
-    character: state.server.character
+    character: state.server.character,
+    view: state.client.view
   };
 }
 
