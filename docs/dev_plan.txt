@@ -41,18 +41,21 @@ Main Quest:
     x | Style heart action on front end as red
     x | Add "look outside" linkable to destroy the book for the last region. Defaults to description.
   o | Add functional heart activity, most of this on the front end
-    o | On the backend, add a heart attribute, with an array of nine heart "chambers"
-    o | On the backend, add an attribute to track whether the heart is in tutorial mode
-    o | On the front end, add a client side "view_heart" which is be default set to false
-    o | Event text is replaced with "Heart" text, which is in two parts. 
+    x | On the backend, add a heart attribute, with an array of nine heart "chambers"
+    x | On the backend, add an attribute to track whether the heart is in tutorial mode
+    x | On the front end, add a client side "view_heart" which is be default set to false
+    x | Have the heart button transition to this view
+    x | Have the view state reset if a new world is created
+    x | Have a button that transitions back to the region view
+    o | Add "Heart" text, which is in two parts. 
     o | The first part is the Heart event text, which by default says "You have entered your many-chambered heart."
     o | The second part is the descriptive text, which be default says "Your heart is still and quiet."
     o | Have it load a grid of 6 squares to replace the region description.
     o | Each square is clickable, which changes the Heart text to describe that chamber
       o | The description of each square is "<First/Second/Third/...> Chamber: Full of Darkness."
       o | The first click also displays the heart event: "Your heart has filled with the darkness that surrounds you."
+      o | Add a client side "heart_tutorial_progression" attribute 
       o | Have heart events progress each time a chamber is clicked.
-        o | 
   o | Add an additional text body to looking inward that asks the player what drives them, which lets them set which Spark they have.
 
 Side Missions

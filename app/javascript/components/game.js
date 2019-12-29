@@ -4,9 +4,8 @@ import StartMenu from './start_menu';
 import WorldMenu from './world_menu';
 import Region from './region';
 import Events from './events';
+import Heart from './heart';
 import * as Action from '../actions/index';
-
-const Heart = ()=> (<div>HEART PLACEHOLDER</div>)
 
 const RegionView = ()=>(<div className='view'><Events /><Region /></div>)
 const HeartView = ()=>(<div className='view'><Heart /></div>)

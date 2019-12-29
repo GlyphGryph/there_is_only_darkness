@@ -13,11 +13,21 @@ const clientReducer = (state=initialState, action)=>{
         ...state,
         stateLoaded: true
       }
+    case Action.CREATE_WORLD_REQUEST:
+      return {
+        ...initialState,
+        stateLoaded: true
+      }
     case Action.API_REQUEST_FAILURE:
       return {
         ...state,
         error: true
       }
+    case Action.SWITCH_TO_VIEW:
+      return {
+        ...state,
+        view: action.view
+      }     
     default:
       return state
   }
