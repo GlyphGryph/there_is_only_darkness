@@ -3,7 +3,8 @@ import * as Action from '../actions/constants'
 const initialState = {
   stateLoaded: false,
   error: false,
-  view: 'region'
+  view: 'region',
+  heart_tutorial_progression: 0
 }
 
 const clientReducer = (state=initialState, action)=>{

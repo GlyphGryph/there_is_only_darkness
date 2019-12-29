@@ -6,7 +6,7 @@ class Character < ApplicationRecord
   serialize :events, Array
   # An array of Heart light statues
   # [:none, :hope, :none, :none, :survival, :none, :none, :none]
-  # Current standard length is 6
+  # Current standard length is 9
   serialize :heart, Array
 
   def select_activity(activity_name)
@@ -30,7 +30,7 @@ class Character < ApplicationRecord
       id: id,
       events: events,
       heart: heart,
-      heart_tutorial: heart_tutorial
+      heartTutorialComplete: heart_tutorial_complete
     }
     return state
   end

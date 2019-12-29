@@ -47,16 +47,18 @@ Main Quest:
     x | Have the heart button transition to this view
     x | Have the view state reset if a new world is created
     x | Have a button that transitions back to the region view
-    o | Add "Heart" text, which is in two parts. 
-    o | The first part is the Heart event text, which by default says "You have entered your many-chambered heart."
-    o | The second part is the descriptive text, which be default says "Your heart is still and quiet."
-    o | Have it load a grid of 6 squares to replace the region description.
-    o | Each square is clickable, which changes the Heart text to describe that chamber
+    x | Add "Heart" text, which is in two parts. 
+    x | The first part is the Heart event text, which by default says "You have entered your many-chambered heart."
+    x | The second part is the descriptive text, which be default says "Your heart is still and quiet."
+    o | Add an additional text body to looking inward that asks the player what drives them, which lets them set which Spark they have.
+    o | Add functionality to rekindle heart
+      o | Have it load a grid of 9 squares
+      o | Each square is clickable, which changes the Heart text to describe that chamber
       o | The description of each square is "<First/Second/Third/...> Chamber: Full of Darkness."
+    o | Add a tutorial client-side to delay that rekindling
       o | The first click also displays the heart event: "Your heart has filled with the darkness that surrounds you."
       o | Add a client side "heart_tutorial_progression" attribute 
       o | Have heart events progress each time a chamber is clicked.
-  o | Add an additional text body to looking inward that asks the player what drives them, which lets them set which Spark they have.
 
 Side Missions
   o | Create a "waiting/loading" state to use when waiting for feedback from server
@@ -64,6 +66,7 @@ Side Missions
   o | Add description progressions.
     o | Default descriptions of rooms should be replaced once things are inside of them.
     o | Add easter egg in the description progression for the initial series of rooms if the player manages to build something in them. "Is this really the wisest idea? You probably shouldn't be doing this."
+  o | Have the server only return CHANGED state instead of the WHOLE game state
 
 Support Tasks
   o | Switch db to postgres or mysql

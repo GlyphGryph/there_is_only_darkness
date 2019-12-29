@@ -12,8 +12,19 @@
 
 ActiveRecord::Schema.define(version: 2019_12_27_231925) do
 
-# Could not dump table "characters" because of following StandardError
-#   Unknown type 'bool' for column 'heart_tutorial'
+  create_table "characters", force: :cascade do |t|
+    t.integer "world_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "region_id"
+    t.text "events"
+    t.text "heart"
+    t.boolean "heart_tutorial_complete", default: false, null: false
+    t.index ["region_id"], name: "index_characters_on_region_id"
+    t.index ["user_id"], name: "index_characters_on_user_id"
+    t.index ["world_id"], name: "index_characters_on_world_id"
+  end
 
   create_table "paths", force: :cascade do |t|
     t.integer "source_id"
