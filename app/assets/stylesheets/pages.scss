@@ -6,6 +6,14 @@ body{
   float:right;
 }
 
+.heart-chamber{
+  display: inline-block;
+  border: 1px solid white;
+  width: 60px;
+  height: 60px;
+  margin-right: 2px;
+}
+
 .activity{
   display: inline-block;
   background-color:#88F;

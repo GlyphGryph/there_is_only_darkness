@@ -66,7 +66,7 @@ private
       world: self,
       user: user,
       region: last_region,
-      heart: [:none, :hope, :none, :none, :none, :none, :none]
+      heart: [:none, :hope, :none, :none, :none, :none, :none, :none, :none]
     )
 
     # Make chain of followup regions

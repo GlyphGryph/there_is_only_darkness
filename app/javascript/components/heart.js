@@ -1,27 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as Action from '../actions/index';
-import {pageReader} from '../helpers/page_reader';
-
-class HeartDescription extends React.Component {
-  render(){
-    return (
-      <div>
-        <div>You have entered your many chambered heart.</div>
-        <div>Your heart is still and quiet</div>
-      </div>
-    )
-  }
-}
+import HeartDescription from './heart/description';
+import HeartSelection from './heart/selection';
+import HeartChambers from './heart/chambers';
 
 class Heart extends React.Component {
   render(){
     return (
       <div id='heart'>
         <HeartDescription />
-        <div>
-          HEART GRID - Floor(sqrt(# of chambers)) width, then as tall as needed
-        </div>
+        <HeartChambers />
+        <HeartSelection />
         <div>
           <button
             onClick={()=>{this.props.switchToView('region')}}

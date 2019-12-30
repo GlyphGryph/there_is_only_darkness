@@ -1,45 +1,4 @@
 Main Quest:
-  x | Add "event-linking"
-    x | Clickable links in region descriptions
-      x | Add "book" as a property of regions, serialized
-      x | Description used as a fallback if book is empty, but still dropped in Book format for json
-      x | Book is an array of "pages" (conceptually)
-      x | Each event-link definition points to a page number index. Format is [#text], so [3look inside]
-      x | Generate the first room with a Book that looks like this:
-        [ {text: "There is only [1Darkness]"},
-          {text: "There is only Darkness.", effect: :remove_suppression, target: :walk, type: :activity }
-        ]
-      x | Display all text in book to ensure it is loading correctly
-      x | Display initial text on page 0 of book on front end.
-      x | Parse the string to render the linkables differently
-      x | Parse string before display and replace braces with a <Link> element
-      x | Pass the number as an argument assigned to "page" on the Link element
-    x | Implement linkables to progress through text
-      x | add an attribute to region, "current_page", and set it to 0.
-      x | Pass single pages to the client side (or Description is no pages exists) based on current_page
-      x | When a linkable on the client side is clicked, trigger an action to send 'turn_to_page'
-      x | implement 'turn_to_page' api endpoint, which accepts a single number as an argument and returns the game state
-      x | turn_to_page sets the new current_page to the passed in page
-      x | modify the Book structure to include a list of valid page transitions for each page
-      x | return an error message unless the page being transitioned to is valid
-    x | Suppress visibility of Walk Through Darkness in initial region
-      x | Activities can now come with modifiers. :walk is modified with :suppressed in first region
-        x | Do this by adding a "activity_modifiers" serialized hash [activity name: modifier]
-        x | Method returns a hash - symbol:[:modifier]
-        x | Do not return this activity in the activities list for a region if suppressed
-      x | Do not display an action if it is suppressed (should just work)
-      x | Do not respond to an action if is suppressed
-        x | Have the "select" action pass an argument saying which action it is selecting
-        x | Implement a "select_action" method on character called by the controller
-        x | Throw an "unknown action" error if action is not valid
-      x | Do not display "what can I do here?" unless there are actions to display
-    x | Have event link restore it's visibility
-  x | Add a "look inside" linkable.
-    x | Add linkable that unsupresses a "Heart" action
-    x | Add heart action to backend, suppress on all regions
-    x | linkable unsupressed heart action
-    x | Style heart action on front end as red
-    x | Add "look outside" linkable to destroy the book for the last region. Defaults to description.
   o | Add functional heart activity, most of this on the front end
     x | On the backend, add a heart attribute, with an array of nine heart "chambers"
     x | On the backend, add an attribute to track whether the heart is in tutorial mode
@@ -50,15 +9,27 @@ Main Quest:
     x | Add "Heart" text, which is in two parts. 
     x | The first part is the Heart event text, which by default says "You have entered your many-chambered heart."
     x | The second part is the descriptive text, which be default says "Your heart is still and quiet."
-    o | Add an additional text body to looking inward that asks the player what drives them, which lets them set which Spark they have.
+    x | Add an additional text body to looking inward that asks the player what drives them, which lets them set which Spark they have.
       x | Add an additional event after Look Inside that offers the choice between the four flavours - Hope, Love, Purpose, Change.
       x | Add four attributes to the character - hope_sparks, love_sparks, purpose_sparks, change_sparks.
       x | Add four page turning side effects each of which give you the associated spark.
       x | Make the four flavours linkables that link to four new pages with the associated events, in addition to adding the Heart icon instead of the original page turn.
     o | Add functionality to rekindle heart
       o | Have it load a grid of 9 squares
-      o | Each square is clickable, which pulls up a dialog overlay.
-      o | The description of each square is "<First/Second/Third/...> Chamber: Full of Darkness."
+      o | Each square is a clickable chamber.
+      o | Add a client side variable for the selected chamber under 'heart'
+      o | Clicking a chamber highlights it.
+      o | Move "You have entered..." description to below the heart.
+      o | Clicking a square adds a description below the heart. The description of each square is "<First/Second/Third/...> Chamber: Full of Darkness.", based on the currently selected chamber.
+      o | Display a row of "actions" under the description, with the "Exit Heart" button first
+      o | Exiting and entering your heart resets the client side heart state.
+      o | When a chamber is selected, add a "Kindle (hope/love/purpose/change)" action for each heart resource the player has. (So only one should come up now)
+      o | Clicking this Kindle button sends a request to the server
+        o | Reduces sparks of that type by 1
+        o | Changes nature of that chamber
+        o | Updates state
+      o | Chamber description for kindled chambers should say "Shining with (light type)" instead of "Full of Darkness"
+      o | 
     o | Add a tutorial client-side to delay that rekindling
       o | The first click also displays the heart event: "Your heart has filled with the darkness that surrounds you."
       o | Add a client side "heart_tutorial_progression" attribute 
@@ -162,5 +133,44 @@ Completed Missions
     x | Fix error state for when a server request fails to load a world, create an error state perhaps?
     x | Set up Reducer file structure, get it out of configureStore
     x | Split front-end store state into two halfs - clientSide and serverSide. User clientSide for things like isLoaded and serverSide data should never be altered directly by client, just loaded straight from api returns
-
-
+  x | Add "event-linking"
+    x | Clickable links in region descriptions
+      x | Add "book" as a property of regions, serialized
+      x | Description used as a fallback if book is empty, but still dropped in Book format for json
+      x | Book is an array of "pages" (conceptually)
+      x | Each event-link definition points to a page number index. Format is [#text], so [3look inside]
+      x | Generate the first room with a Book that looks like this:
+        [ {text: "There is only [1Darkness]"},
+          {text: "There is only Darkness.", effect: :remove_suppression, target: :walk, type: :activity }
+        ]
+      x | Display all text in book to ensure it is loading correctly
+      x | Display initial text on page 0 of book on front end.
+      x | Parse the string to render the linkables differently
+      x | Parse string before display and replace braces with a <Link> element
+      x | Pass the number as an argument assigned to "page" on the Link element
+    x | Implement linkables to progress through text
+      x | add an attribute to region, "current_page", and set it to 0.
+      x | Pass single pages to the client side (or Description is no pages exists) based on current_page
+      x | When a linkable on the client side is clicked, trigger an action to send 'turn_to_page'
+      x | implement 'turn_to_page' api endpoint, which accepts a single number as an argument and returns the game state
+      x | turn_to_page sets the new current_page to the passed in page
+      x | modify the Book structure to include a list of valid page transitions for each page
+      x | return an error message unless the page being transitioned to is valid
+    x | Suppress visibility of Walk Through Darkness in initial region
+      x | Activities can now come with modifiers. :walk is modified with :suppressed in first region
+        x | Do this by adding a "activity_modifiers" serialized hash [activity name: modifier]
+        x | Method returns a hash - symbol:[:modifier]
+        x | Do not return this activity in the activities list for a region if suppressed
+      x | Do not display an action if it is suppressed (should just work)
+      x | Do not respond to an action if is suppressed
+        x | Have the "select" action pass an argument saying which action it is selecting
+        x | Implement a "select_action" method on character called by the controller
+        x | Throw an "unknown action" error if action is not valid
+      x | Do not display "what can I do here?" unless there are actions to display
+    x | Have event link restore it's visibility
+  x | Add a "look inside" linkable.
+    x | Add linkable that unsupresses a "Heart" action
+    x | Add heart action to backend, suppress on all regions
+    x | linkable unsupressed heart action
+    x | Style heart action on front end as red
+    x | Add "look outside" linkable to destroy the book for the last region. Defaults to description.

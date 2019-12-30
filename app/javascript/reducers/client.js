@@ -4,7 +4,8 @@ const initialState = {
   stateLoaded: false,
   error: false,
   view: 'region',
-  heart_tutorial_progression: 0
+  heart_tutorial_progression: 0,
+  selected_chamber: null
 }
 
 const clientReducer = (state=initialState, action)=>{
