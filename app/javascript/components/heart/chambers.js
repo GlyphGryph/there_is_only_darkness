@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as Action from '../../actions/index';
+import HeartChamber from './chamber';
 
-const HeartChamber = (props)=>(
-  <div className='heart-chamber'></div>
-)
 
 class HeartChambers extends React.Component {
   render(){
@@ -12,7 +11,7 @@ class HeartChambers extends React.Component {
       <div>
         {this.props.heart.map((chamber, index) =>
           <React.Fragment key={index}>
-            <HeartChamber chamber={chamber}/>
+            <HeartChamber id={index} />
             { ( (index % columns) == (columns-1)) ? <br /> : ''}
           </React.Fragment>
         )}
@@ -26,7 +25,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state){
   return {
-    selected_chamber: state.client.selected_chamber,
+    selectedChamber: state.client.selectedChamber,
     heart: state.server.character.heart
   };
 }

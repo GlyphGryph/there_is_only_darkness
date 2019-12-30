@@ -29,7 +29,12 @@ const clientReducer = (state=initialState, action)=>{
       return {
         ...state,
         view: action.view
-      }     
+      }
+    case Action.SELECT_CHAMBER:
+      return {
+        ...state,
+        selectedChamber: action.selectedChamber
+      }
     default:
       return state
   }

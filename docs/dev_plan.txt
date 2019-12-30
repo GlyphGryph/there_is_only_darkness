@@ -15,10 +15,10 @@ Main Quest:
       x | Add four page turning side effects each of which give you the associated spark.
       x | Make the four flavours linkables that link to four new pages with the associated events, in addition to adding the Heart icon instead of the original page turn.
     o | Add functionality to rekindle heart
-      o | Have it load a grid of 9 squares
-      o | Each square is a clickable chamber.
-      o | Add a client side variable for the selected chamber under 'heart'
-      o | Clicking a chamber highlights it.
+      x | Have it load a grid of 9 squares
+      x | Each square is a clickable chamber.
+      x | Add a client side variable for the selected chamber under 'heart'
+      x | Clicking a chamber highlights it.
       o | Move "You have entered..." description to below the heart.
       o | Clicking a square adds a description below the heart. The description of each square is "<First/Second/Third/...> Chamber: Full of Darkness.", based on the currently selected chamber.
       o | Display a row of "actions" under the description, with the "Exit Heart" button first
@@ -29,6 +29,9 @@ Main Quest:
         o | Changes nature of that chamber
         o | Updates state
       o | Chamber description for kindled chambers should say "Shining with (light type)" instead of "Full of Darkness"
+      o | Do not display kindle actions for chambers that are not empty.
+    o | Add Circumstances Mechanics to the Heart
+      o | Replace the "sparks" resources with Deception/Affection/Discipline/Survival
       o | 
     o | Add a tutorial client-side to delay that rekindling
       o | The first click also displays the heart event: "Your heart has filled with the darkness that surrounds you."
