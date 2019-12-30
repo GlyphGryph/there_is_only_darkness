@@ -52,8 +52,8 @@ Main Quest:
     x | The second part is the descriptive text, which be default says "Your heart is still and quiet."
     o | Add an additional text body to looking inward that asks the player what drives them, which lets them set which Spark they have.
       x | Add an additional event after Look Inside that offers the choice between the four flavours - Hope, Love, Purpose, Change.
-      o | Add four attributes to the character - hope_sparks, love_sparks, purpose_sparks, change_sparks.
-      o | Add four page turning side effects each of which give you the associated spark.
+      x | Add four attributes to the character - hope_sparks, love_sparks, purpose_sparks, change_sparks.
+      x | Add four page turning side effects each of which give you the associated spark.
       x | Make the four flavours linkables that link to four new pages with the associated events, in addition to adding the Heart icon instead of the original page turn.
     o | Add functionality to rekindle heart
       o | Have it load a grid of 9 squares

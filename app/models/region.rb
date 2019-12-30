@@ -43,7 +43,7 @@ class Region < ApplicationRecord
     (current_page && current_page[:text]) || description
   end
 
-  def turn_to_page(page_number)
+  def turn_to_page(page_number, character)
     old_page = current_page
     new_page = book[page_number]
     raise "Invalid page ##{page_number} for page ##{current_page_number}." unless old_page[:links_to] && old_page[:links_to].include?(page_number)
@@ -59,7 +59,18 @@ class Region < ApplicationRecord
         elsif(:remove_book == key && true==value)
           todo = :remove_book
         elsif(:add_spark == key)
-          p "Adding spark placeholder!"
+          if(:hope)
+            character.hope_sparks += 1
+          elsif(:love)
+            character.love_sparks += 1
+          elsif(:purpose)
+            character.purpose_sparks += 1
+          elsif(:change)
+            character.change_sparks += 1
+          else
+            raise "Invalid spark type"
+          end
+          character.save!
         else
           raise "Effect not recognized"
         end

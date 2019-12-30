@@ -30,7 +30,13 @@ class Character < ApplicationRecord
       id: id,
       events: events,
       heart: heart,
-      heartTutorialComplete: heart_tutorial_complete
+      heartTutorialComplete: heart_tutorial_complete,
+      sparks: {
+        hope: hope_sparks,
+        love: love_sparks,
+        purpose: purpose_sparks,
+        change: change_sparks
+      }
     }
     return state
   end

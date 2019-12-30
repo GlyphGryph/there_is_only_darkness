@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_27_231925) do
+ActiveRecord::Schema.define(version: 2019_12_30_020956) do
 
   create_table "characters", force: :cascade do |t|
     t.integer "world_id", null: false
@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 2019_12_27_231925) do
     t.text "events"
     t.text "heart"
     t.boolean "heart_tutorial_complete", default: false, null: false
+    t.integer "hope_sparks", default: 0, null: false
+    t.integer "love_sparks", default: 0, null: false
+    t.integer "purpose_sparks", default: 0, null: false
+    t.integer "change_sparks", default: 0, null: false
     t.index ["region_id"], name: "index_characters_on_region_id"
     t.index ["user_id"], name: "index_characters_on_user_id"
     t.index ["world_id"], name: "index_characters_on_world_id"
