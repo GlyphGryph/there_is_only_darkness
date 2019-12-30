@@ -58,6 +58,10 @@ class Region < ApplicationRecord
           modifier.delete(:suppress)
         elsif(:remove_book == key && true==value)
           todo = :remove_book
+        elsif(:add_spark == key)
+          p "Adding spark placeholder!"
+        else
+          raise "Effect not recognized"
         end
       end
     end
